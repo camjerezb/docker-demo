@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  jira:
+    build: .
+    container_name: jira-software
+    ports:
+      - "8080:8080"
+    volumes:
+      - jira_data:/var/atlassian/application-data/jira
+    environment:
+      - JVM_MINIMUM_MEMORY=512m
+      - JVM_MAXIMUM_MEMORY=1024m
+    restart: unless-stopped
+
+volumes:
+  jira_data:
+    driver: local
